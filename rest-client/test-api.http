@@ -1,0 +1,54 @@
+@baseUrl = http://localhost:3099
+@supabaseUrl = https://kqmbuzxxpfrrbbyxzdet.supabase.co
+@supabaseKey = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtxbWJ1enh4cGZycmJieXh6ZGV0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQxNTIwODMsImV4cCI6MjA2OTcyODA4M30.NypedaisTdtjTwEJokPoNDCoDIbsyJxcvdoWNlEJv1s
+
+### Variables
+
+### Login to get token (save response token for other requests)
+# @name login
+POST {{supabaseUrl}}/auth/v1/signin
+Content-Type: application/json
+apikey: {{supabaseKey}}
+X-Client-Info: supabase-js/2.1.0
+
+{
+    "email": "contact@odihamd.com",
+    "password": "DH15mo94!"
+}
+
+### Set the token from login response
+@authToken = {{login.response.body.session.access_token}}
+
+@ticketId = 1
+
+### Get all tickets
+GET {{baseUrl}}/tickets
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+### Create a new ticket
+POST {{baseUrl}}/tickets
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+    "title": "Test Ticket 5",
+    "description": "This is a test ticket created via REST Client"
+}
+
+### Get a specific ticket (endpoint not implemented yet)
+# GET {{baseUrl}}/tickets/{{ticketId}}
+# Content-Type: application/json
+
+### Update a ticket (endpoint not implemented yet)
+# PATCH {{baseUrl}}/tickets/{{ticketId}}
+# Content-Type: application/json
+# 
+# {
+#     "title": "Updated Title",
+#     "description": "Updated description"
+# }
+
+### Delete a ticket (endpoint not implemented yet)
+# DELETE {{baseUrl}}/tickets/{{ticketId}}
+# Content-Type: application/json
