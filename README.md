@@ -245,4 +245,5 @@ pnpm test
 
 ## 📄 License
 
+This is a sandbox/demo project. No support provided.
 This project is licensed under the MIT License - see the LICENSE file for details.
